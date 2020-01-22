@@ -11,7 +11,7 @@ set -u
 #set -x
 
 function indent() {
-  c='s/^/       /'
+  c='s/^/      /'
   case $(uname) in
     Darwin) sed -l "$c";;
     *)      sed -u "$c";;
@@ -22,6 +22,18 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
 BP_DIR=`cd $(dirname $0); cd ..; pwd`
+
+if [ ! -f "${ENV_DIR}/ERXES_DIR" ]; then
+    echo "ERXES_DIR was not set. Aborting" | indent
+    exit 1
+fi
+if [ ! -f "${ENV_DIR}/WIDGETS_DIR" ]; then
+    echo "WIDGETS_DIR was not set. Aborting" | indent
+    exit 1
+fi
+
+ERXES_DIR="$(cat "${ENV_DIR}/ERXES_DIR")"
+WIDGETS_DIR="$(cat "${ENV_DIR}/WIDGETS_DIR")"
 
 # Switch to new Node auto build behavior ahead of release
 export NEW_BUILD_SCRIPT_BEHAVIOR=true

@@ -1,8 +1,18 @@
 #!/usr/bin/env bash
 # bin/detect <build-dir>
 
-if [ -f $1/package.json ]; then
-  echo "React.js (create-react-app) multi" && exit 0
+erxes_ui_dir = "ui"
+erxes_widgets_dir = "widgets"
+
+
+if [ -f $1/$erxes_ui_dir/package.json ]; then
+  echo "erxes ui app detected" && exit 0
 else
-  echo "no" && exit 1
+  echo "no erxes ui app detected" && exit 1
+fi
+
+if [ -f $1/$erxes_widgets_dir/package.json ]; then
+  echo "erxes widgets app detected" && exit 0
+else
+  echo "no erxes widgets app detected" && exit 1
 fi
