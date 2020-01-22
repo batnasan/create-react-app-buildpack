@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # bin/detect <build-dir>
 
-erxes_ui_dir = "ui"
-erxes_widgets_dir = "widgets"
+erxes_ui_dir="ui"
+erxes_widgets_dir="widgets"
 
 
 if [ -f $1/$erxes_ui_dir/package.json ]; then
